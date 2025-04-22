@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/NagipoguChinnu/Student-Registration-System/static/css/main.9bc71e9a.css",
+    "main.js": "/NagipoguChinnu/Student-Registration-System/static/js/main.cfd7e7e6.js",
+    "static/js/453.cba7921f.chunk.js": "/NagipoguChinnu/Student-Registration-System/static/js/453.cba7921f.chunk.js",
+    "index.html": "/NagipoguChinnu/Student-Registration-System/index.html",
+    "main.9bc71e9a.css.map": "/NagipoguChinnu/Student-Registration-System/static/css/main.9bc71e9a.css.map",
+    "main.cfd7e7e6.js.map": "/NagipoguChinnu/Student-Registration-System/static/js/main.cfd7e7e6.js.map",
+    "453.cba7921f.chunk.js.map": "/NagipoguChinnu/Student-Registration-System/static/js/453.cba7921f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9bc71e9a.css",
+    "static/js/main.cfd7e7e6.js"
+  ]
+}
