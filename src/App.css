@@ -1,0 +1,19 @@
+
+.custom-btn-width{
+  width: 230px;
+}
+
+  .custom-md {
+    background-color: #f0f0f0;
+    font-size: 1.2rem;
+    width: 200px;
+  }
+  .custom-width{
+    width: 300px;
+  }
+  .no-left-space {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+  
+
