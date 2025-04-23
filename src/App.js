@@ -1,7 +1,7 @@
 import React from 'react';
 import StudentRegistration from './components/StudentRegistration';
 import RegisteredStudents from './components/RegisteredStudents';
-import { Link, BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Navigate,Link, BrowserRouter, Routes, Route } from 'react-router-dom';
 import CombinedPage from './components/CombinedPage';
 import Home from './components/Home';
 
@@ -21,11 +21,11 @@ function App() {
               <Link to="/" className='btn btn-outline-info'>
                 Home
               </Link>
+              <Link to="/course" className='btn btn-outline-info'>
+                Course management
+              </Link>
               <Link to="/registration" className='btn btn-outline-success'>
                 Student Registration
-              </Link>
-              <Link to="/course" className='btn btn-outline-info'>
-                Course Details
               </Link>
               <Link to="/students" className='btn btn-outline-warning'>
                 Registered Students
@@ -40,7 +40,7 @@ function App() {
             <Route exact path='/registration' element={<StudentRegistration />} />
             <Route exact path='/course' element={<CombinedPage />} />
             <Route exact path='/students' element={<RegisteredStudents />} />
-            <Route exact path='/*' element={<ErrorPage />}/>
+            <Route exact path='*' element={<Navigate to="/" />}/>
           </Routes>
         </div>
       </BrowserRouter>

@@ -8,8 +8,9 @@ function CourseOfferings() {
   const [selectedCourse, setSelectedCourse] = useState('');
   const [editIndex, setEditIndex] = useState(null);
   const [errors, setErrors] = useState({ type: '', course: '' });
+  const [notification, setNotification] = useState('');
 
-  useEffect(() => {
+  const loadAllData = () => {
     const storedOfferings = JSON.parse(localStorage.getItem('courseOfferings')) || [];
     const storedCourses = JSON.parse(localStorage.getItem('courses')) || [];
     const storedTypes = JSON.parse(localStorage.getItem('courseTypes')) || [];
@@ -17,6 +18,31 @@ function CourseOfferings() {
     setOfferings(storedOfferings);
     setCourses(storedCourses);
     setCourseTypes(storedTypes);
+  };
+
+  useEffect(() => {
+    loadAllData();
+
+    // Check for updates every second (for same tab)
+    const interval = setInterval(() => {
+      loadAllData();
+    }, 1000);
+
+    // Listen to storage changes across tabs
+    const handleStorageChange = (e) => {
+      if (e.key === 'courseTypes' || e.key === 'courses') {
+        loadAllData();
+        setNotification('Course data updated in another tab');
+        setTimeout(() => setNotification(''), 3000);
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('storage', handleStorageChange);
+    };
   }, []);
 
   const saveOfferings = (newOfferings) => {
@@ -77,6 +103,11 @@ function CourseOfferings() {
         <div className='offset-md-5'>
           <div className='card p-4'>
             <h2 className='text-center text-danger'>Course Offerings</h2>
+
+            {notification && (
+              <div className="alert alert-info text-center">{notification}</div>
+            )}
+
             <select value={selectedType} onChange={(e) => setSelectedType(e.target.value)} className='form-control my-2'>
               <option value="">Select Course Type</option>
               {courseTypes.map((type, index) => (
@@ -96,6 +127,7 @@ function CourseOfferings() {
             <button className='btn btn-outline-primary my-2' onClick={handleAddOrUpdate}>
               {editIndex !== null ? "Update" : "Add"} Offering
             </button>
+
             <ul>
               {offerings.map((offering, index) => (
                 <li key={index}>

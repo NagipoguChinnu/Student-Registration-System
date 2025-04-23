@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 function StudentRegistration() {
-  const [courseTypes] = useState(['Individual', 'Group', 'Special']);
+  const [courseTypes, setCourseTypes] = useState([]);
   const [courseOfferings, setCourseOfferings] = useState([]);
   const [filteredOfferings, setFilteredOfferings] = useState([]);
   const [selectedTypeFilter, setSelectedTypeFilter] = useState('');
@@ -15,6 +15,12 @@ function StudentRegistration() {
     const storedOfferings = JSON.parse(localStorage.getItem('courseOfferings')) || [];
     setCourseOfferings(storedOfferings);
     setFilteredOfferings(storedOfferings);
+
+    // Extract unique course types dynamically from course offerings
+    const uniqueTypes = Array.from(
+      new Set(storedOfferings.map(off => off.split(' - ')[0]))
+    );
+    setCourseTypes(uniqueTypes);
   }, []);
 
   useEffect(() => {
